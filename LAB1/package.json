@@ -1,0 +1,16 @@
+{
+  "name": "strongloop_nodejs_fundamentals",
+  "version": "0.0.0",
+  "description": "try it!",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./server.js"
+  },
+  "author": "",
+  "license": "BSD",
+  "dependencies": {
+    "express": "~4.13.3",
+    "morgan": "~1.6.1",
+    "body-parser": "~1.14.1"
+  }
+}
