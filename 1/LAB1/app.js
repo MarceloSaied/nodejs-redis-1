@@ -36,6 +36,10 @@ app.get('/users/:id', function(req, res) { // ':id' takes whatever is following 
 	});
 });
 
+
+
+/*
+
 //by marcelo saied at app.js
 app.get('/users/name/:name', function(req, res) { // ':id' takes whatever is following after '/users/name'
 	var name = req.params.name;                // and makes that available in req.params.id.
