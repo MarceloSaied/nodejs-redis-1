@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>redis-lab</title>
+    <link rel='stylesheet' href='stylesheet.css' />
+  </head>
+  <body>
+    <h1>This is the post overview:</h1>
+    <p>Found the following keys:</p>
+    <ul>
+    {{#keys}}
+      <li>
+        <a href='/post/{{.}}'>KEY {{.}}</a>
+      </li>
+    {{/keys}}
+    </ul>
+  </body>
+</html>
