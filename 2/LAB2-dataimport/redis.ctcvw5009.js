@@ -9,7 +9,8 @@ var Redis       = require('ioredis');
  */
 //var redis = new Redis(6379, "127.0.0.1", {
    // var redis = new Redis(8080, "10.23.232.107", {
- var redis = new Redis(8080, "ctcvw5009", {      //22.6 sec
+ //var redis = new Redis(21, "ctcvw5009", {      //22.6 sec
+ var redis = new Redis(22, "10.23.232.155", {
   showFriendlyErrorStack: true,
   retryStrategy: function (times) {
     if(times <= 5) {
@@ -23,6 +24,7 @@ var Redis       = require('ioredis');
 
 let filePosts = __dirname + '/raw_xml/Posts.xml';
 let countPosts = 0;
+let counter = 0;
 console.log('Processing posts from "%s"', filePosts);
 postsReader.readPosts(__dirname + '/raw_xml/Posts.xml', function *() {
   let elem = yield;
@@ -39,9 +41,31 @@ postsReader.readPosts(__dirname + '/raw_xml/Posts.xml', function *() {
       redis.hset("myhash",elem.responseId + '.body', elem.body);
     }
     
-    if((countPosts % 500)==0) {
-      process.stdout.write('.');
+
+
+ 
+   /*
+    switch(countPosts % 500) {
+     case 0:
+        process.stdout.write('-');
+        break;        
+     case 2:
+        process.stdout.write('\\');
+        break;
+     case 3:
+        process.stdout.write('|');
+        break;
+     case 4:
+        process.stdout.write('/');
+     default:
+ } 
+ counter++;
+ 
+  /*  
+    if((countPosts % 50)==0) {
+      process.stdout.write('/');
     }
+    */
     countPosts++;
     
     // get next entry
