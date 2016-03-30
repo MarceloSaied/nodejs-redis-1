@@ -36,8 +36,8 @@ postsReader.readPosts(__dirname + '/raw_xml/Posts.xml', function *() {
     } else {
       // response!
       let meta = { 'type': 'response', 'parentId': elem.parentId, 'creationDate': elem.creationDate };      
-      redis.hset("hash hey",elem.responseId + '.meta', JSON.stringify(meta));
-      redis.hset("hash hey",elem.responseId + '.body', elem.body);
+      redis.hset("myhash",elem.responseId + '.meta', JSON.stringify(meta));
+      redis.hset("myhash",elem.responseId + '.body', elem.body);
     }
     
     if((countPosts % 500)==0) {
@@ -49,6 +49,6 @@ postsReader.readPosts(__dirname + '/raw_xml/Posts.xml', function *() {
     elem = yield;
   }
   process.stdout.write('\n');
-  console.log('We are done. uploaded ='+countPosts);
+  console.log('We are done. uploaded ='+ (countPosts * 2));
   redis.quit();
 });
