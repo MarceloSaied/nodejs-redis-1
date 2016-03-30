@@ -9,8 +9,7 @@ var Redis       = require('ioredis');
  */
 //var redis = new Redis(6379, "127.0.0.1", {
    // var redis = new Redis(8080, "10.23.232.107", {
- var redis = new Redis(8080, "ctcvw5009", {
-        //22.6 sec
+ var redis = new Redis(8080, "ctcvw5009", {      //22.6 sec
   showFriendlyErrorStack: true,
   retryStrategy: function (times) {
     if(times <= 5) {
