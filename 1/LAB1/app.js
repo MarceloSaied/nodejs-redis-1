@@ -37,7 +37,6 @@ app.get('/users/:id', function(req, res) { // ':id' takes whatever is following 
 });
 
 
-
 /*
 
 //by marcelo saied at app.js

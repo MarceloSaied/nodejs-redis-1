@@ -7,8 +7,9 @@ var Redis       = require('ioredis');
 /* We're using ioredis, the currently recommended fast client
  * check https://github.com/luin/ioredis for details
  */
-var redis = new Redis(6379, "127.0.0.1", {
-  //  var redis = new Redis(8080, "10.23.232.107", {
+//var redis = new Redis(6379, "127.0.0.1", {
+    var redis = new Redis(8080, "10.23.232.107", {
+        //22.6 sec
   showFriendlyErrorStack: true,
   retryStrategy: function (times) {
     if(times <= 5) {
@@ -34,11 +35,11 @@ postsReader.readPosts(__dirname + '/raw_xml/Posts.xml', function *() {
     } else {
       // response!
       let meta = { 'type': 'response', 'parentId': elem.parentId, 'creationDate': elem.creationDate };      
-      redis.set(elem.responseId + '.meta', JSON.stringify(meta));
-      redis.set(elem.responseId + '.body', elem.body);
+      redis.hset("hash hey",elem.responseId + '.meta', JSON.stringify(meta));
+      redis.hset("hash hey","myhash:"+elem.responseId + '.body', elem.body);
     }
     
-    if((countPosts % 100)==0) {
+    if((countPosts % 500)==0) {
       process.stdout.write('.');
     }
     countPosts++;
@@ -47,6 +48,6 @@ postsReader.readPosts(__dirname + '/raw_xml/Posts.xml', function *() {
     elem = yield;
   }
   process.stdout.write('\n');
-  console.log('We are done');
+  console.log('We are done. uploaded ='+countPosts);
   redis.quit();
 });

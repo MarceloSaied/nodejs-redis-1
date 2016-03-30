@@ -18,7 +18,8 @@ app.use(express.static(path.join(__dirname, 'static')));
 /* We're using ioredis, the currently recommended fast client
  * check https://github.com/luin/ioredis for details
  */
-var redis = new Redis(6379, "127.0.0.1", {
+//    var redis = new Redis(6379, "127.0.0.1", {
+    var redis = new Redis(8080, "10.23.232.107", {
   showFriendlyErrorStack: true,
   retryStrategy: function (times) {
     if(times <= 5) {
